@@ -151,3 +151,38 @@ class AreaTextField extends StatelessWidget {
         ));
   }
 }
+
+class ShapeContainer extends StatelessWidget {
+  final String shape;
+
+  const ShapeContainer(this.shape);
+  @override
+  Widget build(BuildContext context) {
+    if (shape == 'triangle') {
+      return CustomPaint(
+        size: Size(100, 100),
+        painter: TrianglePainter(),
+      );
+    }
+    return Container();
+  }
+}
+
+class TrianglePainter extends CustomPainter {
+  @override
+  void paint(Canvas canvas, Size size) {
+    final paint = Paint();
+    paint.color = Colors.deepOrange;
+    var path = Path();
+    path.moveTo(size.width / 2, 0); // top center
+    path.lineTo(size.width, size.height); // line to bottom right corner
+    path.lineTo(0, size.height); // line to bottom left corner
+    path.close(); // close the shape
+    canvas.drawPath(path, paint);
+  }
+
+  @override
+  bool shouldRepaint(covariant CustomPainter oldDelegate) {
+    return true;
+  }
+}
