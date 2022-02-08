@@ -64,6 +64,8 @@ class _AreaCalculatorState extends State<AreaCalculator> {
                     currentShape = shape ?? 'Rectangle';
                   });
                 }),
+            // shape
+            ShapeContainer(currentShape),
             //width
             AreaTextField(widthController, 'Width'),
             //height
