@@ -45,49 +45,51 @@ class _AreaCalculatorState extends State<AreaCalculator> {
   Widget build(BuildContext context) {
     return Container(
         margin: EdgeInsets.only(top: 15.0),
-        child: Column(
-          children: <Widget>[
-            //dropdown
-            DropdownButton<String>(
-                value: currentShape,
-                items: shapes.map((String value) {
-                  return new DropdownMenuItem<String>(
-                    value: value,
-                    child: Text(
-                      value,
-                      style: TextStyle(fontSize: 24.0),
-                    ),
-                  );
-                }).toList(),
-                onChanged: (shape) {
-                  setState(() {
-                    currentShape = shape ?? 'Rectangle';
-                  });
-                }),
-            // shape
-            ShapeContainer(currentShape),
-            //width
-            AreaTextField(widthController, 'Width'),
-            //height
-            AreaTextField(heightController, 'Height'),
-            Container(
-              margin: EdgeInsets.all(15.0),
-              child: ElevatedButton(
-                child: Text(
-                  'Calculate Area',
-                  style: TextStyle(fontSize: 18.0),
+        child: SingleChildScrollView(
+          child: Column(
+            children: <Widget>[
+              //dropdown
+              DropdownButton<String>(
+                  value: currentShape,
+                  items: shapes.map((String value) {
+                    return new DropdownMenuItem<String>(
+                      value: value,
+                      child: Text(
+                        value,
+                        style: TextStyle(fontSize: 24.0),
+                      ),
+                    );
+                  }).toList(),
+                  onChanged: (shape) {
+                    setState(() {
+                      currentShape = shape ?? 'Rectangle';
+                    });
+                  }),
+              // shape
+              ShapeContainer(currentShape),
+              //width
+              AreaTextField(widthController, 'Width'),
+              //height
+              AreaTextField(heightController, 'Height'),
+              Container(
+                margin: EdgeInsets.all(15.0),
+                child: ElevatedButton(
+                  child: Text(
+                    'Calculate Area',
+                    style: TextStyle(fontSize: 18.0),
+                  ),
+                  onPressed: calculateArea,
                 ),
-                onPressed: calculateArea,
               ),
-            ),
-            Text(
-              result,
-              style: TextStyle(
-                fontSize: 24.0,
-                color: Colors.green[700],
+              Text(
+                result,
+                style: TextStyle(
+                  fontSize: 24.0,
+                  color: Colors.green[700],
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ));
   }
 
